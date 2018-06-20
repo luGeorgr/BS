@@ -11,4 +11,25 @@
         AND degree != 0
     </select>
 
+    <select id="userBookExist" resultType="boolean">
+        SELECT COUNT(*)
+        FROM userwordrelation
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+    </select>
+
+    <insert id="addAll" parameterType="java.util.List">
+        INSERT INTO userwordrelation(emailAddr, wid, bid, degree)
+        VALUES
+        <foreach collection="relationList" item="item" separator="," >
+            (#{item.emailAddr}, #{item.wid}, #{item.bid}, #{item.degree})
+        </foreach>
+    </insert>
+
+    <select id="selectByEmailAddrAndBidToLearn" resultType="www.george.com.dao.UserWordRelation">
+        SELECT * FROM userwordrelation
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+        AND degree = 0
+    </select>
 </mapper>

@@ -22,7 +22,7 @@ public class UserProgressMapperTest {
         userProgressMapper.insertOrUpdateUserProgress("18867107612@163.com", 0, 0, 10);
         userProgressMapper.insertOrUpdateUserProgress("18867107612@163.com", 0, 0, 20);
         List<UserProgress> list = userProgressMapper.selectByEmailAddrAndBid("18867107612@163.com", 0);
-        list = userProgressMapper.selectByEmailAddrAndBidAndWeekday("18867107612@163.com", 0, 0);
+        userProgressMapper.selectByEmailAddrAndBidAndWeekday("18867107612@163.com", 0, 0);
 
     }
 }

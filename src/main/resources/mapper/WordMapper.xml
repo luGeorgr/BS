@@ -17,4 +17,16 @@
         WHERE wid = #{wid}
     </select>
 
+    <select id="selectAll" resultType="www.george.com.dao.Word">
+        SELECT * FROM
+        <if test="bid == 0">
+            cet4
+        </if>
+        <if test="bid == 1">
+            cet6
+        </if>
+        <if test="bid == 2">
+            gre
+        </if>
+    </select>
 </mapper>

@@ -2,8 +2,6 @@ package www.george.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +33,7 @@ public class UserProgressController {
         if (flag){
             model.setViewName("progress");
             model.addAllObjects(userProgressService.getUserProgress(user, bookName));
-            model.addObject("progressPercent", userProgressService.getProgressPrencent(user, bookName));
+            model.addObject("progressPercent", userProgressService.getProgressPerncent(user, bookName));
         } else {
             model.setViewName("homepage");
             model.addObject("message", "User authentication expired ");

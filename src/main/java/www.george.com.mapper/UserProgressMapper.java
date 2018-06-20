@@ -15,7 +15,7 @@ public interface UserProgressMapper {
     List<UserProgress> selectByEmailAddrAndBid(@Param("emailAddr") String emailAddr,
                                                @Param("bid") Integer bid);
 
-    List<UserProgress> selectByEmailAddrAndBidAndWeekday(@Param("emailAddr") String emailAddr,
+    UserProgress selectByEmailAddrAndBidAndWeekday(@Param("emailAddr") String emailAddr,
                                                          @Param("bid") Integer bid,
                                                          @Param("weekday") Integer weekday);
 }
