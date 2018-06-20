@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import www.george.com.dao.UserProgress;
 import www.george.com.mapper.UserProgressMapper;
+import www.george.com.mapper.UserWordRelationMapper;
 import www.george.com.myEnum.BookCatalog;
 import www.george.com.myEnum.WeekdayCatalog;
 
 import java.text.NumberFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +17,9 @@ import java.util.Map;
 public class UserProgressService {
     @Autowired
     private UserProgressMapper userProgressMapper;
+
+    @Autowired
+    private UserWordRelationMapper userWordRelationMapper;
     public Map<String, Integer> getUserProgress(final String emailAddr, final String bookName){
         Map<String, Integer> map = initProgressMap();
         Integer bid = BookCatalog.getValue(bookName);
@@ -30,7 +33,8 @@ public class UserProgressService {
     public String getProgressPrencent(final String emailAddr, final String bookName){
         NumberFormat percentFormat = NumberFormat.getPercentInstance();
         percentFormat.setMaximumFractionDigits(2);
-        return percentFormat.format(100);
+        Integer count = userWordRelationMapper.countLearnedWord(emailAddr, BookCatalog.getValue(bookName));
+        return percentFormat.format(count/BookCatalog.getTotalWords(bookName));
     }
 
     private Map<String, Integer> initProgressMap(){
