@@ -1,6 +1,9 @@
+<%@page contentType="text/html" pageEncoding = "utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
+    <%@ page isELIgnored="false" %>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +26,7 @@
 			</button>
 		  </div>
 		  <div class="modal-body" id = "result">
-			  activate successful
+			  ${message}
 		  </div>
 		  <div class="modal-footer">
 			<a class="btn btn-primary" href="http://localhost:9999/ReciteWebApp/homepage.com" role="button">Return</a>

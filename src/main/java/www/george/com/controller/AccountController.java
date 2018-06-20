@@ -2,7 +2,10 @@ package www.george.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import www.george.com.service.SignUpService;
 
 @Controller
@@ -11,9 +14,14 @@ public class AccountController {
     private SignUpService signUpService;
 
     @RequestMapping(value = "/html/activate.html", method = RequestMethod.GET)
-    public String activeAccount(@RequestParam(value = "email") String account){
+    public ModelAndView activeAccount(@RequestParam(value = "email") String account){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("activate");
          if (signUpService.activateAccount(account)){
-             return "activateSuccessful";
-         } else return "activateFailed";
+             model.addObject("message", "activate successful");
+         } else {
+             model.addObject("message", "activate failed");
+         }
+         return model;
     }
 }
