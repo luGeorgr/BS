@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding = "utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
@@ -7,11 +8,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en" >
 
 <head>
+  <%@ page isELIgnored="false" %>
   <meta charset="UTF-8">
   <title>Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="<%=basePath%>/css/homePageStyle.css">
+ <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+  <script>
+        $(document).ready(function(){
+            window.alert('${message}');
+        });
+  </script>
 </head>
 
 <body>
@@ -68,20 +76,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="login">
           <h1>Welcome Back!</h1>
 
-          <form action="/" method="post">
+          <form action="./session" method="post">
 
             <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="email"required autocomplete="off" name = "emailAddress"/>
           </div>
 
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password"required autocomplete="off" name = "password"/>
           </div>
 
           <p class="forgot"><a href="#">Forgot Password?</a></p>
