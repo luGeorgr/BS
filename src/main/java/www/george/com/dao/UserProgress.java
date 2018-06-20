@@ -3,7 +3,7 @@ package www.george.com.dao;
 public class UserProgress {
     private String emailAddr;
     private Integer bid;
-    private Integer weekdy;
+    private Integer weekday;
     private Integer wordCount;
 
     public void setBid(Integer bid) {
@@ -22,16 +22,16 @@ public class UserProgress {
         return emailAddr;
     }
 
-    public Integer getWeekdy() {
-        return weekdy;
+    public Integer getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(Integer weekday) {
+        this.weekday = weekday;
     }
 
     public Integer getWordCount() {
         return wordCount;
-    }
-
-    public void setWeekdy(Integer weekdy) {
-        this.weekdy = weekdy;
     }
 
     public void setWordCount(Integer wordCount) {

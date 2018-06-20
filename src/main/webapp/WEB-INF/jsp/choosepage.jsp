@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Exam">Exam</a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Progress">Progress</a>
+            <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Progress?lexicon=CET4">Progress</a>
           </li>
         </ul>
       </div>
@@ -69,7 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <h2>CET 4</h2>
             <h2>CET 4</h2>
 			<p><a class="btn btn-info" href="http://localhost:9999/ReciteWebApp/Recite?lexicon=CET4&&number=20" role="button">Learn 20 words »</a></p>
             <p><a class="btn btn-success" href="http://localhost:9999/ReciteWebApp/Recite?lexicon=CET4&&number=40" role = "button">Learn 40 words »</a></p>
