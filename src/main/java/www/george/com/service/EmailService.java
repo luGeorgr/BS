@@ -21,7 +21,7 @@ public class EmailService {
         prop.setProperty("mail.smtp.auth", "true");
     }
 
-    private void sendEmail(final String emailAddr) throws Exception{
+    public void sendEmail(final String emailAddr) throws Exception{
         Session session = Session.getInstance(prop);
         session.setDebug(true);
         Transport ts = session.getTransport();
