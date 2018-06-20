@@ -5,15 +5,6 @@ public class Word {
     private Integer wid;
     private String word;
     private String meaning;
-    private Integer bid;
-
-    public Integer getBid() {
-        return bid;
-    }
-
-    public void setBid(Integer bid) {
-        this.bid = bid;
-    }
 
     public Integer getWid() {
         return wid;

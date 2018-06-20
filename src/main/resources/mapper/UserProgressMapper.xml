@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.george.com.mapper.UserProgressMapper">
+    <insert id="insertOrUpdateUserProgress">
+        INSERT INTO userprogress
+        VALUES(#{emailAddr}, #{bid}, #{weekday}, #{wordCount})
+        ON DUPLICATE KEY UPDATE
+        wordCount = #{wordCount}
+    </insert>
+
+    <select id="selectByEmailAddrAndBid" resultType="www.george.com.dao.UserProgress">
+        SELECT * FROM userprogress
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+    </select>
+
+    <select id="selectByEmailAddrAndBidAndWeekday" resultType="www.george.com.dao.UserProgress">
+        SELECT * FROM userprogress
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+        AND weekday = #{weekday}
+    </select>
+
+</mapper>
