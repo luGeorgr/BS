@@ -40,4 +40,11 @@
         AND bid = #{bid}
         AND wid = #{wid}
     </update>
+
+    <select id="selectByDegree" resultType="www.george.com.dao.UserWordRelation">
+        SELECT *
+        FROM userwordrelation
+        WHERE degree = #{degree}
+        AND emailAddr = #{emailAddr}
+    </select>
 </mapper>

@@ -21,7 +21,7 @@ public class UserWordRelationMapperTest {
     UserWordRelationMapper userWordRelationMapper;
     @Test
     public void testUserWordRelationMapper(){
-        boolean b = userWordRelationMapper.userBookExist("18867107612@163.com", 0);
+        /*boolean b = userWordRelationMapper.userBookExist("18867107612@163.com", 0);
         Assert.assertTrue(b);
         List<UserWordRelation> list = new ArrayList<>(1);
         UserWordRelation userWordRelation = new UserWordRelation();
@@ -30,6 +30,7 @@ public class UserWordRelationMapperTest {
         userWordRelation.setDegree(0);
         userWordRelation.setBid(0);
         list.add(userWordRelation);
-        userWordRelationMapper.addAll(list);
+        userWordRelationMapper.addAll(list);*/
+        userWordRelationMapper.update("18867107612@163.com", 120, 1, 0);
     }
 }

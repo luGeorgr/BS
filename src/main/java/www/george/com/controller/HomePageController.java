@@ -12,6 +12,7 @@ import www.george.com.service.SignInService;
 import www.george.com.service.SignUpService;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
@@ -48,12 +49,23 @@ public class HomePageController {
     @RequestMapping(value = "session", method = RequestMethod.POST)
     public ModelAndView signIn(@RequestParam("emailAddress") String emailAddress,
                                @RequestParam("password") String password,
-                               HttpServletResponse response){
+                               HttpServletResponse response,
+                               HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
         String res = signInService.checkUser(emailAddress, password);
         if(StringUtils.isBlank(res)){
-            Cookie cookie = new Cookie("user", emailAddress);
-            response.addCookie(cookie);
+            Cookie userCookie = null;
+            for(Cookie cookie : request.getCookies()){
+                if(cookie.getName().equals("user")){
+                    userCookie = cookie;
+                    userCookie.setValue(emailAddress);
+                    break;
+                }
+            }
+            if(userCookie == null) {
+                userCookie = new Cookie("user", emailAddress);
+                response.addCookie(userCookie);
+            }
             modelAndView.setViewName("choosepage");
         } else {
             modelAndView.addObject("message", res);

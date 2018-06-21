@@ -6,6 +6,15 @@ public class Word {
     private String word;
     private String meaning;
     private String index;
+    private String bid;
+
+    public void setBid(String bid) {
+        this.bid = bid;
+    }
+
+    public String getBid() {
+        return bid;
+    }
 
     public String getIndex() {
         return index;

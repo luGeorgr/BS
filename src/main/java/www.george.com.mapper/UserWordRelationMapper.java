@@ -20,4 +20,6 @@ public interface UserWordRelationMapper {
                 @Param("wid") Integer wid,
                 @Param("bid") Integer bid,
                 @Param("degree") Integer degree);
+    List<UserWordRelation> selectByDegree(@Param("emailAddr") String emailAddr,
+                                          @Param("degree") Integer degree);
 }
