@@ -71,8 +71,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<main role="main" class="container">
       <div class="jumbotron">
         <a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/UnKnow" role="button">Don't Know »</a>
-		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/Know" role="button">I Know it »</a>
-		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/AddBook" role="button">Add To MyBook »</a>
+		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/Know?wid=${wid}" role="button">I Know it »</a>
+		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/AddBook?wid=${wid}" role="button">Add To MyBook »</a>
       </div>
 	  <div class="progress">
 		<div class="progress-bar" id = "displayBar" style="width: ${progressPercent}; background: linear-gradient(to right, #cc5345 35%, #ff7f36 68%);">

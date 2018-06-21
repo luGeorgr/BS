@@ -38,6 +38,11 @@ public class ChoosePageController {
                 break;
             }
         }
+        if(!flag){
+            ModelAndView model = new ModelAndView("homepage");
+            model.addObject("message", "User authentication expired ");
+            return model;
+        }
         reciteService.addBook(user, bookName);
 
         Cookie cookielexicon = new Cookie("lexicon", bookName);
@@ -49,6 +54,7 @@ public class ChoosePageController {
         model.addObject("word", word.getWord());
         model.addObject("meaning", word.getMeaning());
         model.addObject("progressPercent", reciteService.getTodayProgress(user, bookName, number));
+        model.addObject("wid", word.getWid());
         return model;
     }
 }

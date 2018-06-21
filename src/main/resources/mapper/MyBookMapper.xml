@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.george.com.mapper.MyBookMapper">
+    <insert id="insertOneWord">
+        INSERT INTO myrecitebook(emailAddr, bid, wid)
+        VALUES(#{emailAddr}, #{bid}, #{wid})
+    </insert>
+
+    <select id="selectWordByBid" resultType="www.george.com.dao.MyBookWord">
+        SELECT *
+        FROM myrecitebook
+        WHERE bid = #{bid}
+        AND emailAddr = #{emailAddr}
+    </select>
+
+    <delete id="deleteWord">
+        DELETE FROM myrecitebook
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+        AND wid = #{wid}
+    </delete>
+</mapper>

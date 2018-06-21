@@ -16,4 +16,8 @@ public interface UserWordRelationMapper {
 
     List<UserWordRelation> selectByEmailAddrAndBidToLearn(@Param("emailAddr") String emailAddr,
                                                    @Param("bid") Integer bid);
+    void update(@Param("emailAddr") String emailAddr,
+                @Param("wid") Integer wid,
+                @Param("bid") Integer bid,
+                @Param("degree") Integer degree);
 }

@@ -32,4 +32,12 @@
         AND bid = #{bid}
         AND degree = 0
     </select>
+
+    <update id="update">
+        UPDATE userwordrelation
+        SET degree = #{degree}
+        WHERE emailAddr = #{emailAddr}
+        AND bid = #{bid}
+        AND wid = #{wid}
+    </update>
 </mapper>

@@ -10,6 +10,8 @@ import www.george.com.myEnum.BookCatalog;
 import www.george.com.myEnum.WeekdayCatalog;
 
 import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,22 @@ public class UserProgressService {
         percentFormat.setMaximumFractionDigits(2);
         Integer count = userWordRelationMapper.countLearnedWord(emailAddr, BookCatalog.getValue(bookName));
         return percentFormat.format(count/BookCatalog.getTotalWords(bookName));
+    }
+
+    public void updateProgressAddOne(final String emailAddr, final String bookName){
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        Integer weekday = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+        UserProgress userProgress = userProgressMapper.selectByEmailAddrAndBidAndWeekday(emailAddr, BookCatalog.getValue(bookName), weekday);
+        Integer nowCount;
+        if(userProgress == null){
+            nowCount = 0;
+        } else {
+            nowCount = userProgress.getWordCount();
+        }
+        userProgressMapper.insertOrUpdateUserProgress(emailAddr, BookCatalog.getValue(bookName), weekday, nowCount+1);
     }
 
     private Map<String, Integer> initProgressMap(){

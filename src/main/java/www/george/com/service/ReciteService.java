@@ -1,6 +1,5 @@
 package www.george.com.service;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import www.george.com.dao.UserProgress;
@@ -71,5 +70,9 @@ public class ReciteService {
         }
         Integer count = userProgress.getWordCount();
         return percentFormat.format(count/total);
+    }
+
+    public void updateDegree(final String user, final String wid, final String bookName, final Integer degree){
+        userWordRelationMapper.update(user, Integer.parseInt(wid), BookCatalog.getValue(bookName), degree);
     }
 }

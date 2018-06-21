@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         data: {
           labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           datasets: [{
-            data: [${Sunday}, ${Monday}, ${Thursday}, ${Wednesday}, ${Thursday}, ${Friday}, ${Saturday}],
+            data: [${Sunday}, ${Monday}, ${Tuesday}, ${Wednesday}, ${Thursday}, ${Friday}, ${Saturday}],
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
