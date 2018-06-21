@@ -50,22 +50,18 @@ public class ChoosePageController {
         for(Cookie cookie : request.getCookies()){
             if(cookie.getName().equals("lexicon")){
                 cookieLexicon = cookie;
-                cookieLexicon.setValue(bookName);
+                cookieLexicon.setMaxAge(0);
             } else if(cookie.getName().equals("number")){
                 cookieNumber = cookie;
-                cookieNumber.setValue(number);
+                cookieNumber.setMaxAge(0);
             }
         }
 
-        if(cookieNumber == null){
-            cookieNumber = new Cookie("number", number);
-            response.addCookie(cookieNumber);
-        }
+        cookieNumber = new Cookie("number", number);
+        response.addCookie(cookieNumber);
 
-        if(cookieLexicon == null){
-            cookieLexicon = new Cookie("lexicon", bookName);
-            response.addCookie(cookieLexicon);
-        }
+        cookieLexicon = new Cookie("lexicon", bookName);
+        response.addCookie(cookieLexicon);
         ModelAndView model = new ModelAndView("recite");
         Word word =  reciteService.getOneWord(user, bookName);
         model.addObject("word", word.getWord());

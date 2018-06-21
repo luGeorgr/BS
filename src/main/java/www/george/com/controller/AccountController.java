@@ -2,6 +2,7 @@ package www.george.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,8 +14,9 @@ public class AccountController {
     @Autowired
     private SignUpService signUpService;
 
-    @RequestMapping(value = "/html/activate.html", method = RequestMethod.GET)
-    public ModelAndView activeAccount(@RequestParam(value = "email") String account){
+    @RequestMapping(value = "/account/{email}", method = RequestMethod.GET)
+    public ModelAndView activeAccount(@PathVariable("email") String account){
+        account += ".com";
         ModelAndView model = new ModelAndView();
         model.setViewName("activate");
          if (signUpService.activateAccount(account)){
