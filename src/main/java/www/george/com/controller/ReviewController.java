@@ -87,8 +87,8 @@ public class ReviewController {
         }
 
         if(word == null){
-            model.addObject("word", "");
-            model.addObject("meaning", "");
+            model.addObject("word", "You have finish all");
+            model.addObject("meaning", "You can choose go back to lean or exam it");
             if(bid != null) {
                 bid.setMaxAge(0);
             }
