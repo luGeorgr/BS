@@ -21,4 +21,10 @@
         AND bid = #{bid}
         AND wid = #{wid}
     </delete>
+
+    <select id="selectAllWordByEmail" resultType="www.george.com.dao.MyBookWord">
+        SELECT *
+        FROM myrecitebook
+        WHERE emailAddr = #{emailAddr}
+    </select>
 </mapper>

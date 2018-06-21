@@ -32,7 +32,7 @@ public class UserProgressService {
         return map;
     }
 
-    public String getProgressPerncent(final String emailAddr, final String bookName){
+    public String getProgressPercent(final String emailAddr, final String bookName){
         NumberFormat percentFormat = NumberFormat.getPercentInstance();
         percentFormat.setMaximumFractionDigits(2);
         Integer count = userWordRelationMapper.countLearnedWord(emailAddr, BookCatalog.getValue(bookName));

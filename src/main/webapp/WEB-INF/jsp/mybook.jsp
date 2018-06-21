@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-    <title>Recite Page</title>
+    <title>My Book</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="nav-link" href="http://localhost:9999/ReciteWebApp/homepage.com">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="http://localhost:9999/ReciteWebApp/MyBook?index=0">MyBook<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="http://localhost:9999/ReciteWebApp/MyBook?index=${index}">MyBook<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="http://localhost:9999/ReciteWebApp/Review">Review<span class="sr-only">(current)</span></a>
@@ -70,9 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<main role="main" class="container">
       <div class="jumbotron">
-        <a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/UnKnow" role="button">Don't Know »</a>
-		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/Know?wid=${wid}" role="button">I Know it »</a>
-		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/Recite/AddBook?wid=${wid}" role="button">Add To MyBook »</a>
+        <a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/MyBook/Last?index=${index}" role="button">Last »</a>
+		<a class="btn btn-lg btn-primary" href="http://localhost:9999/ReciteWebApp/MyBook/Next?index=${index}" role="button">Next »</a>
       </div>
 	  <div class="progress">
 		<div class="progress-bar" id = "displayBar" style="width: ${progressPercent}; background: linear-gradient(to right, #cc5345 35%, #ff7f36 68%);">

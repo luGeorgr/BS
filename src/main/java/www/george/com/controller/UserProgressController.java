@@ -33,7 +33,7 @@ public class UserProgressController {
         if (flag){
             model.setViewName("progress");
             model.addAllObjects(userProgressService.getUserProgress(user, bookName));
-            model.addObject("progressPercent", userProgressService.getProgressPerncent(user, bookName));
+            model.addObject("progressPercent", userProgressService.getProgressPercent(user, bookName));
         } else {
             model.setViewName("homepage");
             model.addObject("message", "User authentication expired ");

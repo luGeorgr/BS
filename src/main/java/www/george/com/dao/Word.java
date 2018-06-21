@@ -5,6 +5,15 @@ public class Word {
     private Integer wid;
     private String word;
     private String meaning;
+    private String index;
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
 
     public Integer getWid() {
         return wid;

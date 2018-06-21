@@ -15,6 +15,8 @@ public interface MyBookMapper {
     List<MyBookWord> selectWordByBid(@Param("emailAddr") String emailAddr,
                                      @Param("bid") Integer bid);
 
+    List<MyBookWord> selectAllWordByEmail(@Param("emailAddr") String emailAddr);
+
     void deleteWord(@Param("emailAddr") String emailAddr,
                        @Param("bid") Integer bid,
                        @Param("wid") Integer wid);
