@@ -107,7 +107,7 @@ public class ReviewController {
             }
             bid = new Cookie("bid", word.getBid());
             response.addCookie(bid);
-            if(wid == null){
+            if(wid != null){
                 wid.setMaxAge(0);
             }
             wid = new Cookie("wid", word.getWid().toString());
