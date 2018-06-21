@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/MyBook?index=0">MyBook</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Review">Review</a>
+            <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Review?method=show">Review</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="http://localhost:9999/ReciteWebApp/Exam">Exam</a>

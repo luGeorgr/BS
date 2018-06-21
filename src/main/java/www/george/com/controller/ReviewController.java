@@ -1,5 +1,6 @@
 package www.george.com.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,44 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+
     @RequestMapping(value = "Review", method = RequestMethod.GET)
-    public ModelAndView getReviewWord(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView handleRequest(@Param("method") String method,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response) {
+        if(method.equals("show")){
+            return getModelAndView(request,response);
+        }
+
+        Cookie[] cookies = request.getCookies();
+        String user = null;
+        Integer bid = null;
+        Integer wid = null;
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals("user")){
+                user = cookie.getValue();
+            } else if(cookie.getName().equals("bid")){
+                bid = Integer.parseInt(cookie.getValue());
+            } else if(cookie.getName().equals("wid")){
+                wid = Integer.parseInt(cookie.getValue());
+            }
+        }
+
+        if(user == null || bid == null || wid == null){
+            ModelAndView model = new ModelAndView("homepage");
+            model.addObject("message", "User authentication expired ");
+            return model;
+        }
+
+        if(bid >= 0) {
+            Integer degree = (method.compareTo("forget") == 0) ? 0 : 2;
+            //update degree
+            reviewService.updateWordDegree(user, bid, wid, degree);
+        }
+        return  getModelAndView(request, response);
+    }
+
+    private ModelAndView getModelAndView(HttpServletRequest request, HttpServletResponse response){
         ModelAndView model = new ModelAndView();
         Cookie[] cookies = request.getCookies();
         boolean flag = false;
@@ -52,87 +89,30 @@ public class ReviewController {
         if(word == null){
             model.addObject("word", "");
             model.addObject("meaning", "");
-            if(bid == null) {
-                bid = new Cookie("bid", "-1");
-                response.addCookie(bid);
+            if(bid != null) {
+                bid.setMaxAge(0);
             }
-            bid.setValue("-1");
+            bid = new Cookie("bid", "-1");
+            response.addCookie(bid);
             if(wid == null){
-                wid = new Cookie("wid", "-1");
-                response.addCookie(wid);
+                wid.setMaxAge(0);
             }
-            wid.setValue("-1");
+            wid = new Cookie("wid", "-1");
+            response.addCookie(wid);
         } else {
             model.addObject("word", word.getWord());
             model.addObject("meaning", word.getMeaning());
-            if(bid == null) {
-                bid = new Cookie("bid", word.getBid());
-                response.addCookie(bid);
+            if(bid != null) {
+                bid.setMaxAge(0);
             }
-            bid.setValue(word.getBid());
+            bid = new Cookie("bid", word.getBid());
+            response.addCookie(bid);
             if(wid == null){
-                wid = new Cookie("wid", word.getWid().toString());
-                response.addCookie(wid);
+                wid.setMaxAge(0);
             }
-            wid.setValue(word.getWid().toString());
+            wid = new Cookie("wid", word.getWid().toString());
+            response.addCookie(wid);
         }
         return model;
-    }
-
-    @RequestMapping(value = "Review/Forget", method = RequestMethod.GET)
-    public ModelAndView forget(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
-        String user = null;
-        Integer bid = null;
-        Integer wid = null;
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("user")){
-                user = cookie.getValue();
-            } else if(cookie.getName().equals("bid")){
-                bid = Integer.parseInt(cookie.getValue());
-            } else if(cookie.getName().equals("wid")){
-                wid = Integer.parseInt(cookie.getValue());
-            }
-        }
-
-        if(user == null || bid == null || wid == null){
-            ModelAndView model = new ModelAndView("homepage");
-            model.addObject("message", "User authentication expired ");
-            return model;
-        }
-
-        if(bid >= 0) {
-            //update degree
-            reviewService.updateWordDegree(user, bid, wid, 0);
-        }
-        return  getReviewWord(request, response);
-    }
-
-    @RequestMapping(value = "Review/Well", method = RequestMethod.GET)
-    public ModelAndView wellKnow(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
-        String user = null;
-        Integer bid = null;
-        Integer wid = null;
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("user")){
-                user = cookie.getValue();
-            } else if(cookie.getName().equals("bid")){
-                bid = Integer.parseInt(cookie.getValue());
-            } else if(cookie.getName().equals("wid")){
-                wid = Integer.parseInt(cookie.getValue());
-            }
-        }
-
-        if(user == null || bid == null || wid == null){
-            ModelAndView model = new ModelAndView("homepage");
-            model.addObject("message", "User authentication expired ");
-            return model;
-        }
-        if(bid >= 0) {
-            //update degree
-            reviewService.updateWordDegree(user, bid, wid, 2);
-        }
-        return getReviewWord(request, response);
     }
 }
