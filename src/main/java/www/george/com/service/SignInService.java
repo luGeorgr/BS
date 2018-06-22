@@ -17,7 +17,7 @@ public class SignInService {
         }
 
         if(userInfo.getEmailState() == 0){
-            return "user don't activate yet";
+            return "user do not activate yet";
         }
 
         if(!userInfo.getPassword().equals(password)){
